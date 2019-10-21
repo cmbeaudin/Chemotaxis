@@ -40,6 +40,6 @@ Bacteria[] bacterias = new Bacteria[500];
       	y += (int)(Math.random() * ySign * 4.5) + (ySign * -1);
  	}
  	void show(){
- 		ellipse(x, y, 3,3);
+ 		ellipse(x, y, 3, 3);
  	}
  }    
