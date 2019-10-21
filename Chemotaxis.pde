@@ -1,4 +1,4 @@
-Bacteria[] bacterias = new Bacteria[150];
+Bacteria[] bacterias = new Bacteria[500];
  void setup()   
  {  
  	size(500, 500);
@@ -14,25 +14,32 @@ Bacteria[] bacterias = new Bacteria[150];
  		bacterias[i].show();
  		bacterias[i].move();
  	}
+ }
+ void mousePressed(){
+ 	for(int i = 0; i < bacterias.length; i++){
+ 		bacterias[i].switchColors = true;
+ 	}
  }  
  class Bacteria    
  {     
- 	int myX, myY;
+ 	int x, y;
+ 	boolean switchColors = false;
  	Bacteria(){
- 		myX = 250;
- 		myY = 250;
+ 		x = 250;
+ 		y = 250;
  	}
  	void move(){
- 		int xPoint, yPoint;
- 		xPoint = mouseX;
- 		yPoint = mouseY;
- 		int signX = (int)(Math.signum(xPoint - myX));
-      	int signY = (int)(Math.signum(yPoint - myY));
-      	myX += (int)(Math.random() * signX * 4.5) + (-1 * signX);
-      	myY += (int)(Math.random() * signY * 4.5) + (-1 * signY);
+ 		if(switchColors){
+ 			float h = (260f);
+ 			color changingColor = Color.getHSBColor(h, 1, 1);
+ 			fill(changingColor);
+ 		}
+ 		int xSign = (int)(Math.signum(mouseX - x));
+      	int ySign = (int)(Math.signum(mouseY - y));
+      	x += (int)(Math.random() * xSign * 4.5) + (xSign * -1);
+      	y += (int)(Math.random() * ySign * 4.5) + (ySign * -1);
  	}
  	void show(){
- 		fill(255,0,0);
- 		ellipse(myX,myY,3,3);
+ 		ellipse(x, y, 3,3);
  	}
  }    
